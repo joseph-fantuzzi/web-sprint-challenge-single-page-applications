@@ -1,4 +1,5 @@
 import React from "react";
+import "./Order.css";
 
 const Order = (props) => {
   const { order } = props;
@@ -6,10 +7,18 @@ const Order = (props) => {
     <div className="order-container">
       <h1>Thank You for Ordering!</h1>
       <h2>Your Order Summary:</h2>
-      <h3>Ordered At: {order.createdAt}</h3>
-      <h3>Name: {order.name}</h3>
-      <h3>Size: {order.size}</h3>
-      <h3>Toppings:</h3>
+      <h3>
+        <span>Ordered At:</span> {order.createdAt}
+      </h3>
+      <h3>
+        <span>Name:</span> {order.name}
+      </h3>
+      <h3>
+        <span>Size:</span> {order.size}
+      </h3>
+      <h3>
+        <span>Toppings:</span>
+      </h3>
       <h4>{order.pepperoni ? "Pepperoni" : ""}</h4>
       <h4>{order.sausage ? "Sausage" : ""}</h4>
       <h4>{order.bacon ? "Bacon" : ""}</h4>
@@ -24,7 +33,9 @@ const Order = (props) => {
       <h4>{order.sardines ? "Sardines" : ""}</h4>
       <h4>{order.extraCheese ? "Extra Cheese" : ""}</h4>
       <h4>{order.jalapenos ? "Jalapenos" : ""}</h4>
-      <h3>Instructions: {order.instructions}</h3>
+      <h3>
+        <span>Instructions:</span> {order.instructions}
+      </h3>
       <h2>Your order will be ready in 20 minutes.</h2>
     </div>
   );
