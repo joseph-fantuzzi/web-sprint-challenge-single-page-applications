@@ -4,7 +4,29 @@ import Home from "./Components/Home";
 import Form from "./Components/Form";
 import "./App.css";
 
+const initialFormValues = {
+  name: "",
+  size: "",
+  pepperoni: false,
+  sausage: false,
+  bacon: false,
+  grilledChicken: false,
+  onions: false,
+  greenPepper: false,
+  dicedTomatoes: false,
+  blackOlives: false,
+  roastedGarlic: false,
+  artichokes: false,
+  pineapple: false,
+  sardines: false,
+  extraCheese: false,
+  jalapenos: false,
+  instructions: "",
+};
+
 const App = () => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+
   return (
     <div className="container">
       <nav className="navbar">
@@ -20,7 +42,7 @@ const App = () => {
       </nav>
       <Switch>
         <Route path={"/pizza"}>
-          <Form />
+          <Form formValues={formValues} setFormValues={setFormValues} />
         </Route>
         <Route path="/">
           <Home />
