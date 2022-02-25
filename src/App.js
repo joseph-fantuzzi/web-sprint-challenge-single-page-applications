@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
 import Home from "./Components/Home";
 import Form from "./Components/Form";
+import Order from "./Components/Order";
 import "./App.css";
 import axios from "axios";
 import * as yup from "yup";
@@ -100,6 +101,9 @@ const App = () => {
       <Switch>
         <Route path={"/pizza"}>
           <Form formValues={formValues} setFormValues={setFormValues} submit={submit} validate={validate} formErrors={formErrors} disabled={disabled} />
+          {orders.map((order) => {
+            return <Order key={order.id} order={order} />;
+          })}
         </Route>
         <Route path="/">
           <Home />
