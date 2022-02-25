@@ -1,14 +1,18 @@
 import React from "react";
 
 const Form = (props) => {
-  const { formValues, setFormValues } = props;
+  const { formValues, setFormValues, submit, validate, formErrors, disabled } = props;
 
   const onChange = (event) => {
-    const { name, value } = event.target;
+    const { type, name, value, checked } = event.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    validate(name, valueToUse);
+    setFormValues({ ...formValues, [name]: valueToUse });
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
+    submit();
   };
 
   return (
@@ -16,6 +20,7 @@ const Form = (props) => {
       <h1 className="order-title">Order a Pizza</h1>
       <label htmlFor="name-input">Name:</label>
       <input type="text" id="name-input" name="name" value={formValues.name} onChange={onChange} />
+      <div className="error-msg">{formErrors.name}</div>
       <label htmlFor="size-dropdown">Size Pizza:</label>
       <select id="size-dropdown" name="size" value={formValues.size} onChange={onChange}>
         <option value="">---Select a Size---</option>
@@ -24,6 +29,7 @@ const Form = (props) => {
         <option value="large">Large</option>
         <option value="xl">XL</option>
       </select>
+      <div className="error-msg">{formErrors.size}</div>
       <h2>Toppings:</h2>
       <label htmlFor="pepperoni">Pepperoni</label>
       <input type="checkbox" id="pepperoni" name="pepperoni" checked={formValues.pepperoni} onChange={onChange} />
@@ -55,7 +61,9 @@ const Form = (props) => {
       <input type="checkbox" id="jalapenos" name="jalapenos" checked={formValues.jalapenos} onChange={onChange} />
       <label htmlFor="special-text">Special Instructions:</label>
       <input type="text" id="special-text" name="instructions" value={formValues.instructions} onChange={onChange} />
-      <button id="order-button">Place Order</button>
+      <button id="order-button" disabled={disabled}>
+        Place Order
+      </button>
     </form>
   );
 };
