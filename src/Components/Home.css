@@ -46,3 +46,10 @@
     min-width: 450px;
   }
 }
+
+@media (max-width: 475px) {
+  .pizza-img {
+    min-width: 350px;
+    border-radius: 100px;
+  }
+}
